@@ -26,7 +26,7 @@ constante               ({digito})+
 {constante}             {yylval.cte = atoi(yytext); return CONSTANTE;}
 "("                     return PARENTESISIZQUIERDO;
 ")"                     return PARENTESISDERECHO;
-";"                     return  PUNTOYCOMA;
+";"                     return PUNTOYCOMA;
 "+"                     return SUMA;
 "-"                     return RESTA;
 ","                     return COMA;
