@@ -793,7 +793,7 @@ return PARENTESISDERECHO;
 case 9:
 YY_RULE_SETUP
 #line 29 "scanner.l"
-return  PUNTOYCOMA;
+return PUNTOYCOMA;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
