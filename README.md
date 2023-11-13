@@ -1,6 +1,7 @@
-# Compilador e interprete del lenguaje Micro
+# Interprete del lenguaje Micro
 - ## Análisis Léxico: Flex
 - ## Análisis Sintáctico: Bison
 - ## Análisis Semántico: C
 ## Ejecución
-- ```./compilar.bat para ejecutar``` 
+- Si es la primera vez que se ejecuta el programa, se debe ejecutar el archivo ```./compilar.bat``` para compilar el programa.
+- Si ya se ha ejecutado el programa anteriormente, se debe ejecutar el archivo ```./micro``` para ejecutar el interprete.
