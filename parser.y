@@ -33,14 +33,14 @@ extern FILE* yyin;
 
 %}
 
-%token INICIO FIN LEER ESCRIBIR PUNTOYCOMA
+%token INICIO FIN LEER ESCRIBIR PUNTOYCOMA COMA ASIGNACION SUMA RESTA PARENTESISIZQUIERDO PARENTESISDERECHO
 %token <id> ID
 %token <cte> CONSTANTE
 %union {
     char* id;
     int cte;
 }
-%left '+' '-' ','
+%left SUMA RESTA COMA
 %right ASIGNACION
 
 %type <cte> expresion termino
@@ -52,36 +52,36 @@ programa:
 ; 
 
 listaSentencias:
-       sentencia
+    sentencia
     |  listaSentencias sentencia
 ;
 
 sentencia:
-       ID ASIGNACION expresion PUNTOYCOMA               {EscribirATabla($1, $3);}         
-    |  LEER '(' listaIdentificadores ')' PUNTOYCOMA     
-    |  ESCRIBIR '(' listaExpresiones ')' PUNTOYCOMA
+    |   ID ASIGNACION expresion PUNTOYCOMA               {EscribirATabla($1, $3);}         
+    |  LEER PARENTESISIZQUIERDO listaIdentificadores PARENTESISDERECHO PUNTOYCOMA     
+    |  ESCRIBIR PARENTESISIZQUIERDO listaExpresiones PARENTESISDERECHO PUNTOYCOMA
 ;
 
 listaIdentificadores:
        ID                               {cargarEntradas($1);}                                                   
-    |  listaIdentificadores ',' ID      {cargarEntradas($3);}
+    |  listaIdentificadores COMA ID      {cargarEntradas($3);}
 ;
 
 listaExpresiones:
        expresion                        {printf("%d\n", $1);}
-    |  listaExpresiones ',' expresion   {printf("%d\n", $3);}
+    |  listaExpresiones COMA expresion   {printf("%d\n", $3);}
 ;
 
 expresion:
        termino                          {$$ = $1;}
-    |  expresion '+' termino            {$$ = $1 + $3;}
-    |  expresion '-' termino            {$$ = $1 - $3;}                    
+    |  expresion SUMA termino            {$$ = $1 + $3;}
+    |  expresion RESTA termino            {$$ = $1 - $3;}                    
 ;
 
 termino:
        ID                               {$$ = ValorSimbolo($1);}
     |  CONSTANTE                        {$$ = $1;}
-    |  '(' expresion ')'                {$$ = $2;}
+    |  PARENTESISIZQUIERDO expresion PARENTESISDERECHO                {$$ = $2;}
 ;
 
 %%

@@ -59,9 +59,14 @@ extern int yydebug;
     LEER = 260,                    /* LEER  */
     ESCRIBIR = 261,                /* ESCRIBIR  */
     PUNTOYCOMA = 262,              /* PUNTOYCOMA  */
-    ID = 263,                      /* ID  */
-    CONSTANTE = 264,               /* CONSTANTE  */
-    ASIGNACION = 265               /* ASIGNACION  */
+    COMA = 263,                    /* COMA  */
+    ASIGNACION = 264,              /* ASIGNACION  */
+    SUMA = 265,                    /* SUMA  */
+    RESTA = 266,                   /* RESTA  */
+    PARENTESISIZQUIERDO = 267,     /* PARENTESISIZQUIERDO  */
+    PARENTESISDERECHO = 268,       /* PARENTESISDERECHO  */
+    ID = 269,                      /* ID  */
+    CONSTANTE = 270                /* CONSTANTE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -75,9 +80,14 @@ extern int yydebug;
 #define LEER 260
 #define ESCRIBIR 261
 #define PUNTOYCOMA 262
-#define ID 263
-#define CONSTANTE 264
-#define ASIGNACION 265
+#define COMA 263
+#define ASIGNACION 264
+#define SUMA 265
+#define RESTA 266
+#define PARENTESISIZQUIERDO 267
+#define PARENTESISDERECHO 268
+#define ID 269
+#define CONSTANTE 270
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -88,7 +98,7 @@ union YYSTYPE
     char* id;
     int cte;
 
-#line 92 "y.tab.h"
+#line 102 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

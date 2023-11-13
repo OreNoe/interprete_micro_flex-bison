@@ -783,12 +783,12 @@ YY_RULE_SETUP
 case 7:
 YY_RULE_SETUP
 #line 27 "scanner.l"
-return '(';
+return PARENTESISIZQUIERDO;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 28 "scanner.l"
-return ')';
+return PARENTESISDERECHO;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
@@ -798,17 +798,17 @@ return  PUNTOYCOMA;
 case 10:
 YY_RULE_SETUP
 #line 30 "scanner.l"
-return '+';
+return SUMA;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 31 "scanner.l"
-return '-';
+return RESTA;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 32 "scanner.l"
-return ',';
+return COMA;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP

@@ -24,12 +24,12 @@ constante               ({digito})+
 
 {identificador}         {yylval.id = strdup(yytext); return ID;} 
 {constante}             {yylval.cte = atoi(yytext); return CONSTANTE;}
-"("                     return '(';
-")"                     return ')';
+"("                     return PARENTESISIZQUIERDO;
+")"                     return PARENTESISDERECHO;
 ";"                     return  PUNTOYCOMA;
-"+"                     return '+';
-"-"                     return '-';
-","                     return ',';
+"+"                     return SUMA;
+"-"                     return RESTA;
+","                     return COMA;
 ":="                    return ASIGNACION;
 [ \t\n]                 ;
 .                       {yylexerrs++; snprintf(buffer, sizeof(buffer),"Error Lexico: %s es un caracter invalido", yytext); yyerror(buffer);}
