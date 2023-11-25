@@ -26,7 +26,6 @@ El lenguaje Micro cuenta con 16 Tokens:
 | `fin`                    | FIN                        |
 | `leer`                   | LEER                       |
 | `escribir`               | ESCRIBIR                   |
-| `imprimir`               | IMPRIMIR                   |
 | `:=`                     | ASIGNACION                 |
 | `(`                      | PARENTESISIZQUIERDO        |
 | `)`                      | PARENTESISDERECHO          |
