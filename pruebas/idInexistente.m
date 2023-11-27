@@ -1,0 +1,4 @@
+inicio
+
+escribir(idInexistente);
+fin

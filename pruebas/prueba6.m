@@ -1,5 +1,0 @@
-inicio
-
-escribir(idfalso);
-
-fin

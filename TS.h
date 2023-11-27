@@ -2,7 +2,7 @@
 #define TABLA_DE_SIMBOLOS
 
 // Tabla de símbolos per se
-#define TAMAN_TS 100
+#define TAMAN_TS 10
 
 typedef struct {
     char id[32]; // los IDs tienen hasta 32 caracteres

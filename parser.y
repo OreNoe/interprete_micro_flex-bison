@@ -14,22 +14,22 @@ extern FILE* yyin;
 
 %}
 
-%token INICIO FIN LEER ESCRIBIR PUNTOYCOMA IMPRIMIR VECES
+%token INICIO FIN LEER ESCRIBIR PUNTOYCOMA PARENDERECHO PARENIZQUIERDO COMA ASIGNACION SUMA RESTA
 %token <id> ID
 %token <cte> CONSTANTE
 %union {
     char* id;
     int cte;
 }
-%left '+' '-' ',' '*'
+%left SUMA RESTA 
 %right ASIGNACION
 
-%type <cte> expresion primaria termino
+%type <cte> expresion termino
 
 %%
 
 programa:
-       INICIO listaSentencias FIN                       {if (yynerrs || yylexerrs) YYABORT; return -1}
+       INICIO listaSentencias FIN                       {if (yynerrs || yylexerrs) YYABORT; return -1;}
 ; 
 
 listaSentencias:
@@ -39,41 +39,33 @@ listaSentencias:
 
 sentencia:
        ID ASIGNACION expresion PUNTOYCOMA               {EscribirATabla($1, $3);}         
-    |  LEER '(' listaIdentificadores ')' PUNTOYCOMA     
-    |  ESCRIBIR '(' listaExpresiones ')' PUNTOYCOMA
-    |  IMPRIMIR expresion expresion VECES PUNTOYCOMA    {for(int i=0; i<$3; i++) printf("%d\n",$2);}
+    |  LEER PARENIZQUIERDO listaIdentificadores PARENDERECHO PUNTOYCOMA     
+    |  ESCRIBIR PARENIZQUIERDO listaExpresiones PARENDERECHO PUNTOYCOMA
 ;
 
 listaIdentificadores:
        ID                               {cargarEntradas($1);}                                                   
-    |  listaIdentificadores ',' ID      {cargarEntradas($3);}
+    |  listaIdentificadores COMA ID      {cargarEntradas($3);}
 ;
 
 listaExpresiones:
        expresion                        {printf("%d\n", $1);}
-    |  listaExpresiones ',' expresion   {printf("%d\n", $3);}
+    |  listaExpresiones COMA expresion   {printf("%d\n", $3);}
 ;
 
 expresion:
        termino                          {$$ = $1;}
-    |  expresion '+' termino            {$$ = $1 + $3;}
-    |  expresion '-' termino            {$$ = $1 - $3;}                    
+    |  expresion SUMA termino            {$$ = $1 + $3;}
+    |  expresion RESTA termino            {$$ = $1 - $3;}                    
 ;
 
 termino:
-        primaria
-    |   termino '*' primaria            {$$ = $1 * $3;}
-;
-
-primaria:
        ID                               {$$ = ValorSimbolo($1);}
     |  CONSTANTE                        {$$ = $1;}
-    |  '(' expresion ')'                {$$ = $2;}
+    |  PARENIZQUIERDO expresion PARENDERECHO                {$$ = $2;}
 ;
 
 %%
-
-int yylexerrs = 0;
 
 void yyerror(char *s) {
     fprintf(stderr, "%s\n", s);

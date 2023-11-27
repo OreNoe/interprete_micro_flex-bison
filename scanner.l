@@ -21,18 +21,15 @@ constante               ({digito})+
 "fin"                   return FIN;
 "leer"                  return LEER;
 "escribir"              return ESCRIBIR;
-"imprimir"              return IMPRIMIR;
-"veces"                 return VECES;
 
 {identificador}         {yylval.id = strdup(yytext); return ID;} 
 {constante}             {yylval.cte = atoi(yytext); return CONSTANTE;}
-"("                     return '(';
-")"                     return ')';
-";"                     return  PUNTOYCOMA;
-"+"                     return '+';
-"-"                     return '-';
-"*"                     return '*';
-","                     return ',';
+"("                     return PARENIZQUIERDO;
+")"                     return PARENDERECHO;
+";"                     return PUNTOYCOMA;
+"+"                     return SUMA;
+"-"                     return RESTA;
+","                     return COMA;
 ":="                    return ASIGNACION;
 [ \t\n]                 ;
 .                       {yylexerrs++; sprintf(buffer,"Error Lexico: %s es un caracter invalido", yytext); yyerror(buffer);}
