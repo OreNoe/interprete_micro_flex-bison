@@ -1,6 +1,0 @@
-lex.yy.c
-*.tab.c
-*.tab.h
-*.exe
-.gitignore
-micro
